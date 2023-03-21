@@ -27,6 +27,6 @@ async def create(obj_in: UserCreate, db=Depends(get_db)):
 async def update(id: int, obj_in: UserCreate, db=Depends(get_db)):
     return UserService(db).update(id, obj_in)
 
-@router.delete("/{id}", response_model=User, summary="Delete a user")
+@router.delete("/{id}", response_model=bool, summary="Delete a user")
 async def delete(id: int, db=Depends(get_db)):
     return UserService(db).delete(id)

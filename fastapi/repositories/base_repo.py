@@ -34,4 +34,4 @@ class BaseRepo(object):
         obj = self.db.query(self.model).filter(self.model.id == id).first()
         self.db.delete(obj)
         self.db.commit()
-        return obj
+        return True

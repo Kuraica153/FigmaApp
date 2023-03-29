@@ -1,17 +1,5 @@
 from pydantic import BaseModel
-
-class RoleCreate(BaseModel):
-    name: str
-
-    class Config:
-        orm_mode = True
-
-class Role(RoleCreate):
-    id: int
-    permissions: list
-
-    class Config:
-        orm_mode = True
+from typing import List, Optional
 
 class PermissionCreate(BaseModel):
     name: str
@@ -19,7 +7,26 @@ class PermissionCreate(BaseModel):
 
 class Permission(PermissionCreate):
     id: int
-    roles: list
+
+    class Config:
+        orm_mode = True
+
+class RoleCreate(BaseModel):
+    name: str
+    permissions: Optional[List[Permission]]
+
+    class Config:
+        orm_mode = True
+
+class Role(RoleCreate):
+    id: int
+
+    class Config:
+        orm_mode = True
+
+class RolePermissionCreate(BaseModel):
+    role_id: int
+    permission_id: int
 
     class Config:
         orm_mode = True

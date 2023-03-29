@@ -13,7 +13,7 @@ router = APIRouter(
 
 @router.get("/", response_model=list[Role], summary="Get all roles")
 async def get_all(db=Depends(get_db)):
-    return RoleService(db).get_all() 
+    return RoleService(db).get_all()
 
 @router.get("/{id}", response_model=Role, summary="Get role by id")
 async def get_by_id(id: int, db=Depends(get_db)):
@@ -27,6 +27,6 @@ async def create(obj_in: RoleCreate, db=Depends(get_db)):
 async def update(id: int, obj_in: RoleCreate, db=Depends(get_db)):
     return RoleService(db).update(id, obj_in)
 
-@router.delete("/{id}", response_model=Role, summary="Delete a role")
+@router.delete("/{id}", response_model=bool, summary="Delete a role")
 async def delete(id: int, db=Depends(get_db)):
     return RoleService(db).delete(id)

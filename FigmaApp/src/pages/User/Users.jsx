@@ -1,19 +1,22 @@
-import StickyHeadTable from "../components/StickyHeadTable"
-import { deleteUser, getUsers } from "../helpers/users";
+import StickyHeadTable from "../../components/StickyHeadTable"
+import { deleteUser, getUsers } from "../../helpers/users";
 import { useState, useEffect } from 'react';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import 'sweetalert2/src/sweetalert2.scss'
+import { useNavigate } from "react-router-dom";
 
 const columns = [
     { id: 'username', label: 'Usuario', minWidth: 170 },
-    { id: 'name', label: 'Nombre', minWidth: 170 },
-    { id: 'lastname', label: 'Apellido', minWidth: 170 },
+    { id: 'first_name', label: 'Nombre', minWidth: 170 },
+    { id: 'last_name', label: 'Apellido', minWidth: 170 },
     { id: 'role', label: 'rol', minWidth: 170 },
     { id: 'actions', label: 'Acciones', minWidth: 100 }
 ];
 
 export const Users = () => {
+
+    const navigate = useNavigate();
 
     const [users, setUsers] = useState([]);
 
@@ -53,12 +56,11 @@ export const Users = () => {
     }
 
     const handleUpdate = (id) => {
-        //Redireccionar a la ruta de edición
-        window.location.href = `/users/edit/${id}`;
+        navigate(`/users/edit/${id}`);
     }
 
     const handleView = (id) => {
-        console.log(id);
+        navigate(`/users/view/${id}`);
     }
 
     return (
@@ -66,7 +68,7 @@ export const Users = () => {
             <div className="container mt-3">
                 <div className="d-flex justify-content-between align-items-center">
                     <h1>Usuarios</h1>
-                    <button className="btn btn-primary h-50">Nuevo</button>
+                    <button className="btn btn-primary h-50" onClick={ () => navigate('/users/create')}>Nuevo</button>
                 </div>
                 <hr />
                 <StickyHeadTable 

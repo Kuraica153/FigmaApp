@@ -1,20 +1,24 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
-import StickyHeadTable from "../components/StickyHeadTable"
-import { useForm } from "../hooks/useForm"
-import { getUser, updateUser } from "../helpers/users"
-import { getRoles } from "../helpers/roles"
+import StickyHeadTable from "../../components/StickyHeadTable"
+import { useForm } from "../../hooks/useForm"
+import { getUser, updateUser } from "../../helpers/users"
+import { getRoles } from "../../helpers/roles"
+import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
 
 export const EditUser = () => {
+
     const { id } = useParams();
 
-    const { formState, onInputChange, setFormState, username, name, lastname, password, role, confirm_password } = useForm({
+    const navigate = useNavigate();
+
+    const { formState, onInputChange, setFormState, username, first_name, last_name, password, role_id, confirm_password } = useForm({
         username: '',
         name: '',
         lastname: '',
         password: '',
-        role: '1',
+        role_id: '',
         confirm_password: ''
     });
 
@@ -27,7 +31,6 @@ export const EditUser = () => {
             console.log(user);
             setFormState(user);
         });
-        console.log(formState);
         getRoles().then((roles) => {
             setRoles(roles);
         });
@@ -42,6 +45,7 @@ export const EditUser = () => {
                 showConfirmButton: false,
                 timer: 1500
             })
+            navigate('/users');
         });
     }
 
@@ -68,38 +72,38 @@ export const EditUser = () => {
                     </div>
                     <div className="col-12 col-md-6">
                         <div className="form-group">
-                            <label htmlFor="name">Nombre</label>
+                            <label htmlFor="first_name">Nombre</label>
                             <input 
                                 type="text" 
                                 className="form-control" 
-                                id="name" 
-                                name="name"
-                                value={name}
+                                id="first_name" 
+                                name="first_name"
+                                value={first_name}
                                 onChange={onInputChange}
                             />
                         </div>
                     </div>
                     <div className="col-12 col-md-6 mt-3">
                         <div className="form-group">
-                            <label htmlFor="lastname">Apellido</label>
+                            <label htmlFor="last_name">Apellido</label>
                             <input 
                                 type="text" 
                                 className="form-control" 
-                                id="lastname" 
-                                name="lastname"
-                                value={lastname}
+                                id="last_name" 
+                                name="last_name"
+                                value={last_name}
                                 onChange={onInputChange}
                             />
                         </div>
                     </div>
                     <div className="col-12 col-md-6 mt-3">
                         <div className="form-group">
-                            <label htmlFor="role">Rol</label>
+                            <label htmlFor="role_id">Rol</label>
                             <select 
                                 className="form-control" 
-                                id="role"
-                                name="role"
-                                value={role}
+                                id="role_id"
+                                name="role_id"
+                                value={role_id}
                                 onChange={onInputChange}
                             >
                                 <option value="">Selecciona un rol</option>
@@ -141,7 +145,7 @@ export const EditUser = () => {
                 </div>
                 <div className="d-flex justify-content-center mt-3">
                     <button className="btn btn-primary me-2" onClick={handleSubmit}>Guardar</button>
-                    <button className="btn btn-danger ms-2">Cancelar</button>
+                    <button className="btn btn-danger ms-2" onClick={ () => navigate("/users")}>Cancelar</button>
                 </div>
             </div>
         </div>

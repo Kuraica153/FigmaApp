@@ -1,5 +1,4 @@
 from sqlalchemy.orm import Session
-from schemas.role import RoleCreate
 
 
 class BaseRepo(object):

@@ -7,11 +7,11 @@ const API_URL = import.meta.env.VITE_API_URL;
 const MySwal = withReactContent(Swal)
 
 class User {
-    constructor(id, username, name, lastname, role, role_id) {
+    constructor(id, username, first_name, last_name, role, role_id) {
         this.id = id;
         this.username = username;
-        this.name = name;
-        this.lastname = lastname;
+        this.first_name = first_name;
+        this.last_name = last_name;
         this.role = role
         this.role_id = role_id
     }
@@ -21,7 +21,8 @@ export const getUsers = () => {
     return fetch(`${API_URL}/users`)
         .then(response => response.json())
         .then(data => {
-            return data.map(user => new User(user.id, user.username, user.first_name, user.last_name, user.role.name ));
+            console.log(data);
+            return data.map(user => new User(user.id, user.username, user.first_name, user.last_name, user.role.name === '' ? 'No role' : user.role.name, user.role.id === '' ? 0 : user.role.id ));
         }).catch(error => {
             console.log(error);
         });
@@ -32,7 +33,7 @@ export const getUser = (id) => {
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            return new User(data.id, data.username, data.first_name, data.last_name, data.role.name);
+            return new User(data.id, data.username, data.first_name, data.last_name, data.role.name, data.role.id);
         }).catch(error => {
             console.log(error);
         });
@@ -54,7 +55,8 @@ export const createUser = (user) => {
         });
 }
 
-export const updateUser = (user) => {
+export const updateUser = (id, user) => {
+    console.log(user.id);
     return fetch(`${API_URL}/users/${user.id}`, {
         method: 'PUT',
         headers: {

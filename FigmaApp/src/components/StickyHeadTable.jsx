@@ -46,13 +46,13 @@ export default function StickyHeadTable({ columns = [], rows = [], handleView, h
                                     hover
                                     role="checkbox"
                                     tabIndex={-1}
-                                    key={row.code}
+                                    key={row.id}
                                 >
                                     {columns.map((column) => {
                                         const value = row[column.id];
                                         if (column.id === 'actions') {
                                             return (
-                                                <TableCell key={column.id} align='center'>
+                                                <TableCell key={`${column.id}`} align='center'>
                                                     <i className='bi bi-eye-fill' onClick={ () => handleView(row.id)}/>
                                                     <i className='bi bi-pencil-fill ms-3 text-info' onClick={ () => handleUpdate(row.id)}/>
                                                     <i className='bi bi-trash-fill ms-3 text-danger' onClick={ () => handleDelete(row.id)}/>
@@ -60,7 +60,7 @@ export default function StickyHeadTable({ columns = [], rows = [], handleView, h
                                             );
                                         }
                                         return (
-                                            <TableCell key={column.id} align='center'>
+                                            <TableCell key={`${column.id}`} align='center'>
                                                 {column.format && typeof value === 'number' ? column.format(value) : value}
                                             </TableCell>
                                         );

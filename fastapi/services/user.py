@@ -24,7 +24,7 @@ class UserService(object):
     def create(self, obj_in):
 
         user = self.repo.get_by_username(obj_in.username)
-
+        
         if user:
             raise AppException.Conflict(detail=f"Ya existe un usuario con el nombre de usuario: {obj_in.username}")
 

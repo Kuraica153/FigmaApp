@@ -24,13 +24,20 @@ export const EditRole = () => {
     const [source, setSource] = useState([]);
 
     useEffect(() => {
-        getPermissions().then((permissions) => {
-            setSource(permissions);
-        });
         getRole(id).then((role) => {
             setFormState(role);
         });
     }, []);
+
+    useEffect(() => {
+        getPermissions().then((permissionList) => {
+            // Remove permissions that are already assigned to the role
+            const filteredPermissions = permissionList.filter((permission) => {
+                return !permissions.find((rolePermission) => rolePermission.id === permission.id);
+            });
+            setSource(filteredPermissions);
+        });
+    }, [permissions]);
 
     const handleSubmit = (e) => {
         e.preventDefault();

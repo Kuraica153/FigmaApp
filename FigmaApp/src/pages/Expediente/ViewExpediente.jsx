@@ -17,7 +17,20 @@ export const ViewExpediente = () => {
 
     const navigate = useNavigate();
 
-    const [role, setRole] = useState({});
+    const [expediente, setExpediente] = useState({
+        id: '',
+        first_name: '',
+        last_name: '',
+        dob: '',
+        gender: '',
+        weight: '',
+        height: '',
+        email: '',
+        phone: '',
+        address: '',
+        alergias_medicamentos: '',
+        enfermedad_paciente: '',
+    });
 
     useEffect(() => {
         getRole(id).then((role) => {
@@ -30,16 +43,44 @@ export const ViewExpediente = () => {
         <div className="page">
             <div className="container mt-3">
                 <div className="d-flex justify-content-between align-items-center">
-                    <h1>Role {id}</h1>
+                    <h1>Expediente {id}</h1>
                 </div>
                 <hr />
                 <div className="row">
                     <div className="col-12 col-md-6">
                         <h3>Nombre</h3>
-                        <h5>{role.name}</h5>
+                        <h5>{expediente.first_name}</h5>
                     </div>
-                    <div className="col-12 col-md-12 mt-3">
-                        <h3>Permisos</h3>
+                    <div className="col-12 col-md-6">
+                        <h3>Apellido</h3>
+                        <h5>{expediente.last_name}</h5>
+                    </div>
+                    <div className="col-12 col-md-6">
+                        <h3>Fecha de nacimiento</h3>
+                        <h5>{expediente.dob}</h5>
+                    </div>
+                    <div className="col-12 col-md-6">
+                        <h3>Sexo</h3>
+                        <h5>{expediente.gender}</h5>
+                    </div>
+                    <div className="col-12 col-md-6">
+                        <h3>Peso</h3>
+                        <h5>{expediente.weight}</h5>
+                    </div>
+                    <div className="col-12 col-md-6">
+                        <h3>Altura</h3>
+                        <h5>{expediente.height}</h5>
+                    </div>
+                    <div className="col-12 col-md-6">
+                        <h3>Correo</h3>
+                        <h5>{expediente.email}</h5>
+                    </div>
+                    <div className="col-12 col-md-6">
+                        <h3>Phone</h3>
+                        <h5>{expediente.phone}</h5>
+                    </div>
+                    <div className="col-12 mt-3">
+                        <h3>Enfermedades</h3>
                         <StickyHeadTable columns={ columns } rows={role.permissions} />
                     </div>
                 </div>

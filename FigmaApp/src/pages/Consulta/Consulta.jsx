@@ -8,7 +8,11 @@ import { deleteExpediente, getExpedientes } from "../../helpers/expedientes";
 
 const columns = [
     { id: 'patient_name', label: 'Nombre Paciente', minWidth: 170 },
+    { id: 'date_of_consultation', label: 'Fecha', minWidth: 100 },
+    { id: 'medic_consultation', label: 'Medico', minWidth: 100 },
     { id: 'actions', label: 'Acciones', minWidth: 100 }
+    
+    
 ];
 
 export const Consulta = () => {

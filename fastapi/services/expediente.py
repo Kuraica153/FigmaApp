@@ -69,3 +69,13 @@ class ExpedienteService(object):
         if not expediente:
             raise AppException.NotFound(detail=f"No se ha encontrado la expediente con el id: {id}")
         return self.repo.delete(expediente.id)
+    
+    def get_by_paciente_id(self, first_name, last_name):
+        paciente = PacienteService(self.db).get_by_name(first_name, last_name)
+        print (paciente.id)
+        if not paciente:
+            raise AppException.NotFound(detail=f"No se ha encontrado el paciente con el nombre: {paciente.first_name} {paciente.last_name}")
+        expediente = self.repo.get_by_paciente_id(paciente.id)
+        if not expediente:
+            raise AppException.NotFound(detail=f"No se ha encontrado la expediente con el paciente_id: {paciente_id}")
+        return expediente

@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react"
 import { useForm } from "../../hooks/useForm"
-import { getRole } from '../../helpers/roles'
+import { getExpediente } from '../../helpers/expedientes'
 import Swal from 'sweetalert2'
 import { useNavigate } from "react-router-dom"
 import { useParams } from "react-router-dom"
 import StickyHeadTable from "../../components/StickyHeadTable"
 
 const columns = [
-    { id: 'name', label: 'Nombre', minWidth: 170 },
-    { id: 'description', label: 'Descripción', minWidth: 100 },
+    { id: 'nombre', label: 'Enfermedad', minWidth: 170 },
+];
+
+const columnsAlergias = [
+    { id: 'nombre', label: 'Alergia', minWidth: 170 },
 ];
 
 export const ViewExpediente = () => {
@@ -19,22 +22,12 @@ export const ViewExpediente = () => {
 
     const [expediente, setExpediente] = useState({
         id: '',
-        first_name: '',
-        last_name: '',
-        dob: '',
-        gender: '',
-        weight: '',
-        height: '',
-        email: '',
-        phone: '',
-        address: '',
-        alergias_medicamentos: '',
-        enfermedad_paciente: '',
+        paciente: {},
     });
 
     useEffect(() => {
-        getRole(id).then((role) => {
-            setRole(role);
+        getExpediente(id).then((expediente) => {
+            setExpediente(expediente);
         });
     }, []);
 
@@ -49,43 +42,52 @@ export const ViewExpediente = () => {
                 <div className="row">
                     <div className="col-12 col-md-6">
                         <h3>Nombre</h3>
-                        <h5>{expediente.first_name}</h5>
+                        <h5>{expediente.paciente.first_name}</h5>
                     </div>
                     <div className="col-12 col-md-6">
                         <h3>Apellido</h3>
-                        <h5>{expediente.last_name}</h5>
+                        <h5>{expediente.paciente.last_name}</h5>
                     </div>
                     <div className="col-12 col-md-6">
                         <h3>Fecha de nacimiento</h3>
-                        <h5>{expediente.dob}</h5>
+                        <h5>{expediente.paciente.dob}</h5>
                     </div>
                     <div className="col-12 col-md-6">
                         <h3>Sexo</h3>
-                        <h5>{expediente.gender}</h5>
+                        <h5>{expediente.paciente.gender}</h5>
                     </div>
                     <div className="col-12 col-md-6">
                         <h3>Peso</h3>
-                        <h5>{expediente.weight}</h5>
+                        <h5>{expediente.paciente.weight}</h5>
                     </div>
                     <div className="col-12 col-md-6">
                         <h3>Altura</h3>
-                        <h5>{expediente.height}</h5>
+                        <h5>{expediente.paciente.height}</h5>
                     </div>
                     <div className="col-12 col-md-6">
                         <h3>Correo</h3>
-                        <h5>{expediente.email}</h5>
+                        <h5>{expediente.paciente.email}</h5>
                     </div>
                     <div className="col-12 col-md-6">
                         <h3>Phone</h3>
-                        <h5>{expediente.phone}</h5>
+                        <h5>{expediente.paciente.phone}</h5>
+                    </div>
+                    <div className="col-12 col-md-12">
+                        <h3>Dirección</h3>
+                        <h5>{expediente.paciente.address}</h5>
                     </div>
                     <div className="col-12 mt-3">
                         <h3>Enfermedades</h3>
-                        <StickyHeadTable columns={ columns } rows={role.permissions} />
+                        <StickyHeadTable columns={ columns } rows={expediente.paciente.enfermedad_paciente} />
                     </div>
+                    <div className="col-12 mt-3">
+                        <h3>Alergias</h3>
+                        <StickyHeadTable columns={ columnsAlergias } rows={expediente.paciente.alergias_medicamentos} />
+                    </div>
+
                 </div>
                 <div className="d-flex justify-content-center mt-5">
-                    <button className="btn btn-danger" onClick={ () => navigate("/roles")}>Volver</button>
+                    <button className="btn btn-danger" onClick={ () => navigate("/files")}>Volver</button>
                 </div>
             </div>
         </div>

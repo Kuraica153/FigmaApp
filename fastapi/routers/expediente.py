@@ -20,6 +20,12 @@ async def get_all(db=Depends(get_db)):
 async def get_by_id(id: int, db=Depends(get_db)):
     return ExpedienteService(db).get_by_id(id)
 
+# Search by paciente first name and last name
+@router.get("/paciente/{first_name}/{last_name}", response_model=Expediente, summary="Get expediente by paciente first name and last name")
+async def get_by_paciente(first_name: str, last_name: str, db=Depends(get_db)):
+    return ExpedienteService(db).get_by_paciente_id(first_name, last_name)
+
+
 @router.post("/", response_model=Expediente, status_code=201, summary="Create a new expediente")
 async def create(obj_in: PacienteCreate, db=Depends(get_db)):
     return ExpedienteService(db).create(obj_in)

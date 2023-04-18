@@ -29,7 +29,6 @@ export const CreateExpediente = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(JSON.stringify(formState));
         createExpediente(formState).then((res) => {
             if (res) {
                 Swal.fire({

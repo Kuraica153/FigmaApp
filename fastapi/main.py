@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from configs.database import create_tables
-from routers import role, permission, user, expediente
+from routers import role, permission, user, expediente, consulta
 from fastapi.middleware.cors import CORSMiddleware
 
 create_tables()
@@ -18,10 +18,12 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
+app.include_router(consulta.router)
 app.include_router(role.router)
 app.include_router(permission.router)
 app.include_router(user.router)
 app.include_router(expediente.router)
+
 
 
 

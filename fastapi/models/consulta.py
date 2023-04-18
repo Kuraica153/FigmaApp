@@ -19,7 +19,7 @@ class ProcedimientoModel(AuditBase):
     __tablename__ = 'procedimiento'
     id = Column(Integer, primary_key=True)
 
-    nombre = Column(String(100))
+    procedimiento = Column(String(100))
     costo = Column(Float)
     consulta_id = Column(Integer, ForeignKey("consulta.id"))
     consulta = relationship("ConsultaModel", back_populates="procedimientos")

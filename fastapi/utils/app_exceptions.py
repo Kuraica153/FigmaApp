@@ -40,6 +40,11 @@ class AppException():
             super().__init__(status_code = 409, detail=detail)
             logger.error(f"Status code {409}: {detail} | caller={caller_info()}")
 
+    class NotImplemented(AppExceptionCase):
+        def __init__(self, detail: str):
+            super().__init__(status_code = 501, detail=detail)
+            logger.error(f"Status code {501}: {detail} | caller={caller_info()}")
+
 # Caller info
 def caller_info() -> str:
     info = inspect.getframeinfo(inspect.stack()[2][0])

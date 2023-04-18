@@ -16,7 +16,7 @@ class MedicacionModel(AuditBase):
 
     id = Column(Integer, primary_key=True)
     medicamento_id = Column(Integer, ForeignKey("medicamento.id"))
-    medicamento = relationship("MedicamentoModel", back_populates="medicacion")
+    medicamento = relationship("MedicamentoModel", back_populates="medicacion", uselist=False)
     dosis = Column(String(10))
     frecuencia = Column(String(25))
     duracion = Column(String(25))

@@ -18,6 +18,13 @@ class MedicamentoService(object):
             raise AppException.NotFound(detail=f"No se ha encontrado la medicamento con el id: {id}")
         return medicamento
     
+    def get_by_name(self, nombre):
+        print(nombre)
+        medicamento = self.repo.get_by_name(nombre)
+        if not medicamento:
+            raise AppException.NotFound(detail=f"No se ha encontrado la medicamento con el nombre: {nombre}")
+        return medicamento
+
     def create(self, obj_in):
         medicamento = self.repo.get_by_name(obj_in.nombre)
         if medicamento:

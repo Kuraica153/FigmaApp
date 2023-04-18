@@ -17,6 +17,7 @@ import { Expediente } from './pages/Expediente/Expediente'
 import { CreateExpediente } from './pages/Expediente/CreateExpediente'
 import { EditExpediente } from './pages/Expediente/EditRole'
 import { ViewExpediente } from './pages/Expediente/ViewExpediente'
+import { Consulta } from './pages/Consulta/Consulta'
 
 function App() {
   return(
@@ -39,6 +40,8 @@ function App() {
           <Route path="/files/create" element={<CreateExpediente />} />
           <Route path="/files/edit/:id" element={ <EditExpediente /> } />
           <Route path="/files/view/:id" element={ <ViewExpediente /> } /> 
+
+          <Route path="/consultations" element={ <Consulta /> } />
         </Routes>
       </div>
     </>

@@ -29,3 +29,9 @@ class PacienteService(object):
         if not paciente:
             raise AppException.NotFound(detail=f"No se ha encontrado el paciente con el id: {id}")
         return self.repo.update(paciente, obj_in)
+    
+    def get_by_name(self, first_name, last_name):
+        paciente = self.repo.get_by_name(first_name, last_name)
+        if not paciente:
+            raise AppException.NotFound(detail=f"No se ha encontrado el paciente con el nombre: {first_name} {last_name}")
+        return paciente

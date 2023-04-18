@@ -15,9 +15,12 @@ import { ViewRole } from './pages/Role/ViewRole'
 //Expediente imports
 import { Expediente } from './pages/Expediente/Expediente'
 import { CreateExpediente } from './pages/Expediente/CreateExpediente'
-import { EditExpediente } from './pages/Expediente/EditRole'
+import { EditExpediente } from './pages/Expediente/EditExpediente'
 import { ViewExpediente } from './pages/Expediente/ViewExpediente'
+//Consulta imports
 import { Consulta } from './pages/Consulta/Consulta'
+import { CreateConsulta } from './pages/Consulta/CreateConsulta'
+import { ViewConsulta } from './pages/Consulta/ViewConsulta'
 
 function App() {
   return(
@@ -42,6 +45,8 @@ function App() {
           <Route path="/files/view/:id" element={ <ViewExpediente /> } /> 
 
           <Route path="/consultations" element={ <Consulta /> } />
+          <Route path="/consultations/create" element={ <CreateConsulta /> } />
+          <Route path="/consultations/view/:id" element={ <ViewConsulta /> } />
         </Routes>
       </div>
     </>

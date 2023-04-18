@@ -2,6 +2,7 @@ from pydantic import BaseModel, constr, validator, Extra
 from typing import List, Optional
 from .medicacion import Medicacion as MedicacionSchema
 from .procedimiento import Procedimiento as ProcedimientoSchema
+from .expediente import Expediente
 from datetime import date
 
 class MedicacionCreate(BaseModel, extra=Extra.forbid):
@@ -38,11 +39,13 @@ class ConsultaCreate(BaseModel):
     tratamiento: Optional[constr(max_length=500)]
     medicacion: Optional[List[MedicacionCreate]]
     procedimientos: Optional[List[ProcedimientoCreate]]
+    expediente_id: int
 
 class Consulta(ConsultaCreate):
     id: int
     medicacion: Optional[List[MedicacionSchema]]
     procedimientos: Optional[List[ProcedimientoSchema]]
+    expediente: Optional[Expediente]
     created_at: date
     updated_at: Optional[date]
     deleted_at: Optional[date]
@@ -52,3 +55,4 @@ class Consulta(ConsultaCreate):
 
     class Config:
         orm_mode = True
+

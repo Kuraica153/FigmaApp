@@ -4,10 +4,11 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import 'sweetalert2/src/sweetalert2.scss'
 import { useNavigate } from "react-router-dom";
-import { deleteExpediente, getExpedientes } from "../../helpers/expedientes";
+import { getConsultas } from "../../helpers/consulta";
 
 const columns = [
     { id: 'patient_name', label: 'Nombre Paciente', minWidth: 170 },
+    { id: 'consulted_at', label: 'Fecha Consulta', minWidth: 170 },
     { id: 'actions', label: 'Acciones', minWidth: 100 }
 ];
 
@@ -15,42 +16,14 @@ export const Consulta = () => {
 
     const navigate = useNavigate();
 
-    const [expedientes, setExpedientes] = useState([]);
+    const [consultas, setConsultas] = useState([]);
 
     useEffect(() => {
-        getExpedientes().then((expedientes) => {
-            setExpedientes(expedientes);
+        getConsultas().then((consultas) => {
+            setConsultas(consultas);
         });
+        
     }, []);    
-
-    const handleDelete = (id) => {
-        const MySwal = withReactContent(Swal)
-        MySwal.fire({
-            title: '¿Estás seguro?',
-            text: "No podrás revertir esta acción",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Sí, eliminar',
-            cancelButtonText: 'Cancelar'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                deleteExpediente(id).then((res) => {
-                    if (res) {
-                        MySwal.fire(
-                            'Eliminado',
-                            'El usuario ha sido eliminado',
-                            'success'
-                        )
-                        setExpedientes(expedientes.filter((expediente) => expediente.id !== id));
-                    }
-                });
-            }
-        })
-        console.log(id);
-    }
-
 
     const handleView = (id) => {
         navigate(`/consultations/view/${id}`);
@@ -66,14 +39,16 @@ export const Consulta = () => {
                 <hr />
                 <StickyHeadTable 
                     columns = { columns } 
-                    rows = { expedientes.map((expediente) => {
+                    rows = { consultas.map((consulta) => {
                             return {
-                                id: expediente.id,
-                                patient_name: expediente.paciente.first_name + ' ' + expediente.paciente.last_name,
+                                id: consulta.id,
+                                patient_name: consulta.expediente.paciente.first_name + ' ' + consulta.expediente.paciente.last_name,
+                                consulted_at: consulta.created_at,
                             }
                         })
                     } 
                     handleView = { handleView }
+                    showActions = { false }
                 />
             </div>
         </div>

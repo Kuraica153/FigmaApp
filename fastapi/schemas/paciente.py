@@ -38,3 +38,7 @@ class AlergiaMedicamentoPaciente(BaseModel):
 
     class Config:
         orm_mode = True
+
+class PacienteName(BaseModel):
+    first_name: str
+    last_name: str

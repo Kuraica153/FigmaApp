@@ -8,7 +8,7 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 
-export default function StickyHeadTable({ columns = [], rows = [], handleView, handleUpdate, handleDelete }) {
+export default function StickyHeadTable({ columns = [], rows = [], handleView, handleUpdate, handleDelete, showActions = true }) {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -51,6 +51,13 @@ export default function StickyHeadTable({ columns = [], rows = [], handleView, h
                                     {columns.map((column) => {
                                         const value = row[column.id];
                                         if (column.id === 'actions') {
+                                            if (!showActions){
+                                                return (
+                                                    <TableCell key={`${column.id}`} align='center'>
+                                                        <i className='bi bi-eye-fill' onClick={ () => handleView(row.id)}/>
+                                                    </TableCell>
+                                                );
+                                            }
                                             return (
                                                 <TableCell key={`${column.id}`} align='center'>
                                                     <i className='bi bi-eye-fill' onClick={ () => handleView(row.id)}/>

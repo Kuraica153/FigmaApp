@@ -1,6 +1,7 @@
 from sqlalchemy.orm import Session
 from repositories.role_repo import PermissionRepo
 from models.role import PermissionModel
+from utils.app_exceptions import AppException
 
 class PermissionService(object):
 
@@ -12,7 +13,10 @@ class PermissionService(object):
         return self.repo.get_all()
 
     def get_by_id(self, id):
-        return self.repo.get_by_id(id)
+        permission = self.repo.get_by_id(id)
+        if not permission:
+            raise AppException.NotFound(detail=f"No se ha encontrado el permiso con el id: {id}")
+        return permission
 
     def create(self, obj_in):
         return self.repo.create(obj_in)

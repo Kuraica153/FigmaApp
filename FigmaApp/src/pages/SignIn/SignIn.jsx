@@ -67,7 +67,7 @@ export const SignIn = () => {
                                 onChange={ onInputChange }
                             />
                             <div className="d-flex justify-content-center">
-                                <button className="btn btn-success bg-color-secundario mt-3" onClick={ handleSubmit }>Sign In</button>
+                                <button className="btn btn-success bg-color-secundario mt-3" onClick={ handleSubmit }>Iniciar sesión</button>
                             </div>
                         </div>
                     </div>

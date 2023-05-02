@@ -14,8 +14,8 @@ class PacienteCreate(BaseModel):
     phone: str
     email: constr(regex='^[\w-]+@([\w-]+\.)+[\w-]+$', min_length=5, max_length=55)
     address: str
-    alergias_medicamentos: Optional[Optional[List[Union[MedicamentoCreate, Medicamento, str]]]]
-    enfermedad_paciente: Optional[Optional[List[Union[EnfermedadCreate, Enfermedad, str]]]]
+    alergias_medicamentos: Optional[Optional[List[Union[MedicamentoCreate, Medicamento]]]]
+    enfermedad_paciente: Optional[Optional[List[Union[EnfermedadCreate, Enfermedad]]]]
 
 class Paciente(PacienteCreate):
     id: int

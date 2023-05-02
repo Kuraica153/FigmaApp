@@ -56,7 +56,6 @@ export const CreateConsulta = () => {
             ...formState,
             expediente_id: expedientes[0].id
         });
-        console.log
     }, [expedientes]);
     
     const { first_name, last_name, dob, gender, height, weight, phone, email, address, enfermedad_paciente, alergias_medicamentos } = paciente;
@@ -74,7 +73,6 @@ export const CreateConsulta = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(JSON.stringify(formState));
         createConsulta(formState).then((res) => {
             if (res) {
                 Swal.fire({
@@ -128,11 +126,11 @@ export const CreateConsulta = () => {
             <div className="container mt-3">
                 <div className="d-flex justify-content-between align-items-center">
                     <h1>Crear consulta</h1>
-                    <button className="btn btn-primary" onClick={ () => setShow(true) }>Buscar Paciente</button>
+                    <button className="btn btn-success bg-color-secundario" onClick={ () => setShow(true) }>Buscar Paciente</button>
                 </div>
                 <hr />
                 <div className="row d-flex justify-content-center">
-                    <div className="card bg-light mb-3" style={{ width: '97%' }}>
+                    <div className="card bg-light mb-3" style={{ width: '98%' }}>
                         <div className="card-body d-flex justify-content-center">
                             Datos del paciente
                         </div>
@@ -210,7 +208,7 @@ export const CreateConsulta = () => {
                         </div>
                     </div>
                     <hr className='mt-3' />
-                    <div className="card bg-light mb-3" style={{ width: '97%' }}>
+                    <div className="card bg-light mb-3" style={{ width: '98%' }}>
                         <div className="card-body d-flex justify-content-center">
                             Seguimiento de consultas anteriores
                         </div>
@@ -254,7 +252,7 @@ export const CreateConsulta = () => {
                         </div>
                     </div>
                     <hr className='mt-3' />
-                    <div className="card bg-light mb-3" style={{ width: '97%' }}>
+                    <div className="card bg-light mb-3" style={{ width: '98%' }}>
                         <div className="card-body d-flex justify-content-center">
                             Datos de la consulta
                         </div>
@@ -276,7 +274,7 @@ export const CreateConsulta = () => {
                         <div className="form-group">
                             <div className="d-flex justify-content-between align-items-center">
                                 <label htmlFor="enfermedades">¿Esta siendo tratado por un medico actualmente?</label>
-                                <button className="btn btn-primary" onClick={handleAddMedicacion}>Agregar</button>
+                                <button className="btn btn-success bg-color-secundario" onClick={handleAddMedicacion}>Agregar</button>
                             </div>
                             <div className="mt-3">
                                 {
@@ -379,7 +377,7 @@ export const CreateConsulta = () => {
                         <div className="form-group">
                             <div className="d-flex justify-content-between align-items-center">
                                 <label htmlFor="procedimientos">Procedimientos</label>
-                                <button className="btn btn-primary" onClick={handleAddProcedimiento}>Agregar</button>
+                                <button className="btn btn-success bg-color-secundario" onClick={handleAddProcedimiento}>Agregar</button>
                             </div>
                             <div className="mt-3">
                                 {
@@ -415,8 +413,8 @@ export const CreateConsulta = () => {
 
                 </div>
                 <div className="d-flex justify-content-center mt-3 mb-3">
-                    <button className="btn btn-primary me-2" onClick={handleSubmit}>Guardar</button>
-                    <button className="btn btn-danger ms-2" onClick={() => navigate("/files")}>Cancelar</button>
+                    <button className="btn btn-success bg-color-secundario me-2" onClick={handleSubmit}>Guardar</button>
+                    <button className="btn btn-primary bg-color-primario ms-2" onClick={() => navigate("/consultations")}>Cancelar</button>
                 </div>
             </div>
             <Modal show={show} onHide={() => setShow(false)}>
@@ -432,7 +430,7 @@ export const CreateConsulta = () => {
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
                         />
-                        <button className="btn btn-primary" onClick={handleSearch}>Buscar</button>
+                        <button className="btn btn-success bg-color-secundario" onClick={handleSearch}>Buscar</button>
                     </div>
                     <div className='mt-3'>
                         <StickyHeadTable 
@@ -448,8 +446,8 @@ export const CreateConsulta = () => {
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={() => setShow(false)}>Close</Button>
-                    <Button variant="primary">Save Changes</Button>
+                    <Button variant="primary" className='bg-color-primario' onClick={() => setShow(false)}>Close</Button>
+                    <Button variant="success" className='bg-color-secundario'>Save Changes</Button>
                 </Modal.Footer>
             </Modal>
         </div>

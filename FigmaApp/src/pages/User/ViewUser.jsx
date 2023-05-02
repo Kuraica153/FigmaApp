@@ -17,7 +17,6 @@ export const ViewUser = () => {
         getUser(id).then((user) => {
             user.password = '';
             user.confirm_password = '';
-            console.log(user);
             setUser(user);
         });
     }, []);
@@ -49,7 +48,7 @@ export const ViewUser = () => {
                     </div>
                 </div>
                 <div className="d-flex justify-content-center mt-5">
-                    <button className="btn btn-danger" onClick={ () => navigate("/users")}>Volver</button>
+                    <button className="btn btn-primary bg-color-primario" onClick={ () => navigate("/users")}>Volver</button>
                 </div>
             </div>
         </div>

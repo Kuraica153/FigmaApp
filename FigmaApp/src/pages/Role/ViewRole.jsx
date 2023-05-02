@@ -44,7 +44,7 @@ export const ViewRole = () => {
                     </div>
                 </div>
                 <div className="d-flex justify-content-center mt-5">
-                    <button className="btn btn-danger" onClick={ () => navigate("/roles")}>Volver</button>
+                    <button className="btn btn-primary bg-color-primario" onClick={ () => navigate("/roles")}>Volver</button>
                 </div>
             </div>
         </div>

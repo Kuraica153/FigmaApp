@@ -60,6 +60,31 @@ const jsonToPacienteConverter = (json) => {
     return json
 }
 
+const jsonToPacienteUpdateConverter = (json) => {
+    let alergias_medicamentos = [];
+    let enfermedades_paciente = [];
+
+    json.alergias_medicamentos.forEach(alergia => {
+        //if alergia is an object skip
+        if (typeof alergia === 'object') {
+            alergias_medicamentos.push(alergia);
+        } else {
+            alergias_medicamentos.push({nombre: alergia});
+        }
+    });
+    json.enfermedad_paciente.forEach(enfermedad => {
+        //if enfermedad is an object skip
+        if (typeof enfermedad === 'object') {
+            enfermedades_paciente.push(enfermedad);
+        } else {
+            enfermedades_paciente.push({nombre: enfermedad});
+        }
+    });
+    json.alergias_medicamentos = alergias_medicamentos;
+    json.enfermedad_paciente = enfermedades_paciente;
+    return json
+}
+
 
 export const getExpedientes = () => {
     return fetch(`${API_URL}/expedientes`)
@@ -114,12 +139,14 @@ export const createExpediente = (expediente) => {
 
 /**
  * Actualiza un expediente existente en la API.
+ * @param {number} id - El identificador del expediente a actualizar.
  * @param {Expediente} expediente - El objeto Expediente a actualizar.
  * @returns {Promise<Expediente>} - Una promesa que devuelve el objeto Expediente actualizado.
  */
 
-export const updateExpediente = (expediente) => {
-    return fetch(`${API_URL}/expedientes/${expediente.id}`, {
+export const updateExpediente = (expediente, id) => {
+    expediente = jsonToPacienteUpdateConverter(expediente);
+    return fetch(`${API_URL}/expedientes/${id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'

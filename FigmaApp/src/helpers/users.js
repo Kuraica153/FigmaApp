@@ -21,7 +21,6 @@ export const getUsers = () => {
     return fetch(`${API_URL}/users`)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
             return data.map(user => new User(user.id, user.username, user.first_name, user.last_name, user.role.name === '' ? 'No role' : user.role.name, user.role.id === '' ? 0 : user.role.id ));
         }).catch(error => {
             console.log(error);
@@ -32,7 +31,6 @@ export const getUser = (id) => {
     return fetch(`${API_URL}/users/${id}`)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
             return new User(data.id, data.username, data.first_name, data.last_name, data.role.name, data.role.id);
         }).catch(error => {
             console.log(error);
@@ -48,7 +46,6 @@ export const createUser = (user) => {
         body: JSON.stringify(user)
     }).then(response => response.json())
         .then(data => {
-            console.log(data);
             return new User(data.id, data.username, data.first_name, data.last_name, data.role.name);
         }).catch(error => {
             console.log(error);
@@ -56,7 +53,6 @@ export const createUser = (user) => {
 }
 
 export const updateUser = (id, user) => {
-    console.log(user.id);
     return fetch(`${API_URL}/users/${user.id}`, {
         method: 'PUT',
         headers: {
@@ -65,7 +61,6 @@ export const updateUser = (id, user) => {
         body: JSON.stringify(user)
     }).then(response => response.json())
         .then(data => {
-            console.log(data);
             return new User(data.id, data.username, data.first_name, data.last_name, data.role.name);
         }).catch(error => {
             console.log(error);
@@ -77,7 +72,6 @@ export const deleteUser = (id) => {
         method: 'DELETE'
     }).then(response => response.json())
     .then(data => {
-        console.log(data);
         return true;
     }).catch(error => {
         console.log(error);

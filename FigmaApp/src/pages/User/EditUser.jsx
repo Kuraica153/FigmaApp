@@ -144,8 +144,8 @@ export const EditUser = () => {
                     </div>
                 </div>
                 <div className="d-flex justify-content-center mt-3">
-                    <button className="btn btn-primary me-2" onClick={handleSubmit}>Guardar</button>
-                    <button className="btn btn-danger ms-2" onClick={ () => navigate("/users")}>Cancelar</button>
+                    <button className="btn btn-success bg-color-secundario me-2" onClick={handleSubmit}>Guardar</button>
+                    <button className="btn btn-primary bg-color-primario ms-2" onClick={ () => navigate("/users")}>Cancelar</button>
                 </div>
             </div>
         </div>

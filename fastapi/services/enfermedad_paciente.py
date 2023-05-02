@@ -19,3 +19,6 @@ class EnfermedadPacienteService(object):
         enfermedad_paciente = EnfermedadPaciente(paciente_id=paciente_id, enfermedad_id=enfermedad_id)
         
         return self.repo.create(enfermedad_paciente)
+
+    def delete_by_paciente_id(self, paciente_id):
+        return self.repo.delete_by_paciente_id(paciente_id)

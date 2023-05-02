@@ -43,12 +43,24 @@ class RoleService(object):
         return role
 
     def update(self, id, obj_in):
-        role = self.repo.get_by_id(id)
+        role = self.repo.get_by_id(id) 
 
         if not role:
             raise AppException.NotFound(detail=f"No se ha encontrado el rol con el id: {id}")
         
-        return self.repo.update(role, obj_in)
+        # Remove the permissions attribute from the object
+        permissions = obj_in.permissions
+        del obj_in.permissions
+
+        RolePermissionService(self.db).delete_by_role_id(role.id)
+
+        if permissions:
+            for permission in permissions:
+                RolePermissionService(self.db).create(role.id, permission.id)
+
+        role = self.repo.update(role, obj_in)
+
+        return role
 
     def delete(self, id):
         role = self.repo.get_by_id(id)

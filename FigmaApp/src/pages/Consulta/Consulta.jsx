@@ -34,7 +34,7 @@ export const Consulta = () => {
             <div className="container mt-3">
                 <div className="d-flex justify-content-between align-items-center">
                     <h1>Consultas</h1>
-                    <button className="btn btn-primary h-50" onClick={ () => navigate('/consultations/create')}>Nuevo</button>
+                    <button className="btn btn-success bg-color-secundario h-50" onClick={ () => navigate('/consultations/create')}>Nuevo</button>
                 </div>
                 <hr />
                 <StickyHeadTable 

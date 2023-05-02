@@ -19,3 +19,6 @@ class AlergiaMedicamentoService(object):
         alergia_medicamento = AlergiaMedicamentoPaciente(paciente_id=paciente_id, medicamento_id=medicamento_id)
         
         return self.repo.create(alergia_medicamento)
+
+    def delete_by_paciente_id(self, paciente_id):
+        return self.repo.delete_by_paciente_id(paciente_id)

@@ -20,7 +20,6 @@ export const Role = () => {
     useEffect(() => {
         getRoles().then((roles) => {
             setRoles(roles);
-            console.log(roles);
         });
     }, []);    
 
@@ -49,7 +48,6 @@ export const Role = () => {
                 });
             }
         })
-        console.log(id);
     }
 
     const handleUpdate = (id) => {
@@ -65,7 +63,7 @@ export const Role = () => {
             <div className="container mt-3">
                 <div className="d-flex justify-content-between align-items-center">
                     <h1>Roles</h1>
-                    <button className="btn btn-primary h-50" onClick={ () => navigate('/roles/create')}>Nuevo</button>
+                    <button className="btn btn-success bg-color-secundario h-50" onClick={ () => navigate('/roles/create')}>Nuevo</button>
                 </div>
                 <hr />
                 <StickyHeadTable 

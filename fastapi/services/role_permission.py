@@ -19,3 +19,6 @@ class RolePermissionService(object):
         obj = RolePermissionCreate(role_id=role_id, permission_id=permission_id)
 
         return self.repo.create(obj)
+    
+    def delete_by_role_id(self, role_id):
+        return self.repo.delete_by_role_id(role_id)

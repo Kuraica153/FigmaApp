@@ -7,7 +7,7 @@ import { useForm } from "../../hooks/useForm"
 import { getPermissions } from "../../helpers/permissions"
 import { useNavigate } from "react-router-dom"
 import { PickList } from 'primereact/picklist';
-import { createRole, getRole } from '../../helpers/roles'
+import { updateRole, getRole } from '../../helpers/roles'
 import { useParams } from "react-router-dom"
 
 export const EditRole = () => {
@@ -41,17 +41,16 @@ export const EditRole = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(permissions);
-        /* createRole(formState).then((res) => {
+        updateRole(formState).then((res) => {
             if (res) {
                 Swal.fire(
-                    'Rol creado',
-                    'El rol ha sido creado',
+                    'Rol actualizado',
+                    'El rol ha sido actualziado',
                     'success'
                 )
                 navigate('/roles');
             }
-        }); */
+        });
     }
 
     const onSourceSelect = (e) => {
@@ -109,8 +108,8 @@ export const EditRole = () => {
                     </div>
                 </div>
                 <div className="d-flex justify-content-center mt-3">
-                    <button className="btn btn-primary me-2" onClick={handleSubmit}>Guardar</button>
-                    <button className="btn btn-danger ms-2" onClick={ () => navigate("/roles")}>Cancelar</button>
+                    <button className="btn btn-success bg-color-secundario me-2" onClick={handleSubmit}>Guardar</button>
+                    <button className="btn btn-primary bg-color-primario ms-2" onClick={ () => navigate("/roles")}>Cancelar</button>
                 </div>
             </div>
         </div>

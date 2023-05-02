@@ -1,7 +1,7 @@
 import './assets/css/App.css'
 import { Header } from './components/Header'
 import { Sidebar } from './components/Sidebar'
-import { Routes, Route, useParams, useLocation, useNavigate, Navigate } from 'react-router-dom' 
+import { Routes, Route, useParams, useLocation, useNavigate } from 'react-router-dom' 
 //Users imports
 import { Users } from './pages/User/Users'
 import { EditUser } from './pages/User/EditUser'
@@ -21,8 +21,18 @@ import { ViewExpediente } from './pages/Expediente/ViewExpediente'
 import { Consulta } from './pages/Consulta/Consulta'
 import { CreateConsulta } from './pages/Consulta/CreateConsulta'
 import { ViewConsulta } from './pages/Consulta/ViewConsulta'
+import { NotFoundPage } from './pages/NotFoundPage'
+//SignIn imports
+import { SignIn } from './pages/SignIn/SignIn'
 
 function App() {
+
+  const navigate = useNavigate()
+
+  if (localStorage.getItem('token') === null) {
+    return <SignIn />
+  }
+
   return(
     <>
       <Header />
@@ -47,6 +57,8 @@ function App() {
           <Route path="/consultations" element={ <Consulta /> } />
           <Route path="/consultations/create" element={ <CreateConsulta /> } />
           <Route path="/consultations/view/:id" element={ <ViewConsulta /> } />
+
+          <Route path="/*" element={ <NotFoundPage /> } />
         </Routes>
       </div>
     </>

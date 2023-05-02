@@ -79,13 +79,18 @@ export const CreateExpediente = () => {
     }
 
     return (
-        <div className="page">
+        <div className="page" style={{ overflow: 'auto'}}>
             <div className="container mt-3">
                 <div className="d-flex justify-content-between align-items-center">
                     <h1>Crear expediente</h1>
                 </div>
                 <hr />
-                <div className="row">
+                <div className="row d-flex justify-content-center">
+                    <div className="card bg-light mb-3" style={{ width: '98%' }}>
+                        <div className="card-body d-flex justify-content-center">
+                            Datos del paciente
+                        </div>
+                    </div>
                     <div className="col-12 col-md-6">
                         <div className="form-group">
                             <label htmlFor="first_name">Nombre</label>
@@ -168,6 +173,11 @@ export const CreateExpediente = () => {
                             />
                         </div>
                     </div>
+                    <div className="card bg-light mb-3 mt-3" style={{ width: '98%' }}>
+                        <div className="card-body d-flex justify-content-center">
+                            Datos de contacto del paciente
+                        </div>
+                    </div>
                     <div className="col-12 col-md-6">
                         <div className="form-group">
                             <label htmlFor="email">Correo</label>
@@ -208,11 +218,16 @@ export const CreateExpediente = () => {
                         </div>
                     </div>
                     <hr className='mt-3'/>
+                    <div className="card bg-light mb-3" style={{ width: '98%' }}>
+                        <div className="card-body d-flex justify-content-center">
+                            Enfermedades del paciente
+                        </div>
+                    </div>
                     <div className="col-12 ">
                         <div className="form-group">
                             <div className="d-flex justify-content-between align-items-center">
-                                <label htmlFor="enfermedades">Enfermedades</label>
-                                <button className="btn btn-primary" onClick={handleAddEnfermedadPaciente}>Agregar</button>
+                                <label htmlFor="enfermedades"></label>
+                                <button className="btn btn-success bg-color-secundario" onClick={handleAddEnfermedadPaciente}>Agregar</button>
                             </div>
                             <div className="mt-3">
                                 {
@@ -240,11 +255,16 @@ export const CreateExpediente = () => {
                         </div>
                     </div>
                     <hr className='mt-3'/>
+                    <div className="card bg-light mb-3" style={{ width: '98%' }}>
+                        <div className="card-body d-flex justify-content-center">
+                            Alergias del paciente
+                        </div>
+                    </div>
                     <div className="col-12 mt-3">
                         <div className="form-group">
                             <div className="d-flex justify-content-between align-items-center">
-                                <label htmlFor="enfermedades">Alergias</label>
-                                <button className="btn btn-primary" onClick={handleAddAlergy}>Agregar</button>
+                                <label htmlFor="alergias"></label>
+                                <button className="btn btn-success bg-color-secundario" onClick={handleAddAlergy}>Agregar</button>
                             </div>
                             <div className="mt-3">
                                 {
@@ -273,9 +293,9 @@ export const CreateExpediente = () => {
                     </div>
 
                 </div>
-                <div className="d-flex justify-content-center mt-3">
-                    <button className="btn btn-primary me-2" onClick={handleSubmit}>Guardar</button>
-                    <button className="btn btn-danger ms-2" onClick={ () => navigate("/files")}>Cancelar</button>
+                <div className="d-flex justify-content-center mt-3 mb-3">
+                    <button className="btn btn-success bg-color-secundario me-2" onClick={handleSubmit}>Guardar</button>
+                    <button className="btn btn-primary bg-color-primario ms-2" onClick={ () => navigate("/files")}>Cancelar</button>
                 </div>
             </div>
         </div>

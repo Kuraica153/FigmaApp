@@ -70,7 +70,6 @@ export const getRole = (id) => {
  */
 
 export const createRole = (role) => {
-    console.log(role);
     // Crea un objeto RolePermits con los datos obtenidos
     return fetch(`${API_URL}/roles`, {
         method: 'POST', // Especifica el método HTTP POST
@@ -92,7 +91,6 @@ export const createRole = (role) => {
  */
 
 export const updateRole = (role) => {
-    
         return fetch(`${API_URL}/roles/${role.id}`, {
             method: 'PUT',
             headers: {

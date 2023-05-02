@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom"
 import { PickList } from 'primereact/picklist';
 import { createRole, getRole } from '../../helpers/roles'
 import { useParams } from "react-router-dom"
-import { getExpediente } from '../../helpers/expedientes'
+import { getExpediente, updateExpediente } from '../../helpers/expedientes'
 
 export const EditExpediente = () => {
 
@@ -60,7 +60,7 @@ export const EditExpediente = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        updateExpediente(formState).then((res) => {
+        updateExpediente(formState, id).then((res) => {
             if (res) {
                 Swal.fire({
                     icon: 'success',
@@ -119,14 +119,19 @@ export const EditExpediente = () => {
 
 
     return (
-        <div className="page">
+        <div className="page" style={{ overflow: 'auto' }}>
             {expediente.paciente != null && Object.keys(expediente.paciente).length != 0 ? (
                 <div className="container mt-3">
                     <div className="d-flex justify-content-between align-items-center">
                         <h1>Editar expediente</h1>
                     </div>
                     <hr />
-                    <div className="row">
+                    <div className="row d-flex justify-content-center">
+                        <div className="card bg-light mb-3" style={{ width: '98%' }}>
+                            <div className="card-body d-flex justify-content-center">
+                                Datos del paciente
+                            </div>
+                        </div>
                         <div className="col-12 col-md-6">
                             <div className="form-group">
                                 <label htmlFor="first_name">Nombre</label>
@@ -209,6 +214,11 @@ export const EditExpediente = () => {
                                 />
                             </div>
                         </div>
+                        <div className="card bg-light mb-3 mt-3" style={{ width: '98%' }}>
+                            <div className="card-body d-flex justify-content-center">
+                                Datos de contacto del paciente
+                            </div>
+                        </div>
                         <div className="col-12 col-md-6">
                             <div className="form-group">
                                 <label htmlFor="email">Correo</label>
@@ -249,11 +259,16 @@ export const EditExpediente = () => {
                             </div>
                         </div>
                         <hr className='mt-3'/>
+                        <div className="card bg-light mb-3" style={{ width: '98%' }}>
+                            <div className="card-body d-flex justify-content-center">
+                                Enfermedades del paciente
+                            </div>
+                        </div>
                         <div className="col-12 ">
                             <div className="form-group">
                                 <div className="d-flex justify-content-between align-items-center">
-                                    <label htmlFor="enfermedades">Enfermedades</label>
-                                    <button className="btn btn-primary" onClick={handleAddEnfermedadPaciente}>Agregar</button>
+                                    <label htmlFor="enfermedades"></label>
+                                    <button className="btn btn-success bg-color-secundario" onClick={handleAddEnfermedadPaciente}>Agregar</button>
                                 </div>
                                 <div className="mt-3">
                                     {
@@ -281,11 +296,16 @@ export const EditExpediente = () => {
                             </div>
                         </div>
                         <hr className='mt-3'/>
+                        <div className="card bg-light mb-3" style={{ width: '98%' }}>
+                            <div className="card-body d-flex justify-content-center">
+                                Alergias del paciente
+                            </div>
+                        </div>
                         <div className="col-12 mt-3">
                             <div className="form-group">
                                 <div className="d-flex justify-content-between align-items-center">
-                                    <label htmlFor="enfermedades">Alergias</label>
-                                    <button className="btn btn-primary" onClick={handleAddAlergy}>Agregar</button>
+                                    <label htmlFor="enfermedades"></label>
+                                    <button className="btn btn-success bg-color-secundario" onClick={handleAddAlergy}>Agregar</button>
                                 </div>
                                 <div className="mt-3">
                                     {
@@ -314,9 +334,9 @@ export const EditExpediente = () => {
                         </div>
 
                     </div>
-                    <div className="d-flex justify-content-center mt-3">
-                        <button className="btn btn-primary me-2" onClick={handleSubmit}>Guardar</button>
-                        <button className="btn btn-danger ms-2" onClick={ () => navigate("/files")}>Cancelar</button>
+                    <div className="d-flex justify-content-center mt-3 mb-3">
+                        <button className="btn btn-success bg-color-secundario me-2" onClick={handleSubmit}>Guardar</button>
+                        <button className="btn btn-primary bg-color-primario ms-2" onClick={ () => navigate("/files")}>Cancelar</button>
                     </div>
                 </div>
             ):(null)}

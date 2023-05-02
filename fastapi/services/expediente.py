@@ -62,7 +62,45 @@ class ExpedienteService(object):
         expediente = self.repo.get_by_id(id)
         if not expediente:
             raise AppException.NotFound(detail=f"No se ha encontrado la expediente con el id: {id}")
-        return self.repo.update(expediente, obj_in)
+        
+        # Get the attributes from the object
+        paciente = obj_in
+        enfermedades_paciente = paciente.enfermedad_paciente
+        alergias_medicamento = paciente.alergias_medicamentos
+        # Remove the extra attributes from the object
+        del paciente.enfermedad_paciente
+        del paciente.alergias_medicamentos
+
+        # Update the paciente
+        paciente = PacienteService(self.db).update(expediente.paciente_id, paciente)
+
+        if paciente.enfermedad_paciente:
+            EnfermedadPacienteService(self.db).delete_by_paciente_id(expediente.paciente_id)
+
+        if paciente.alergias_medicamentos:
+            AlergiaMedicamentoService(self.db).delete_by_paciente_id(expediente.paciente_id)
+
+        # Update the enfermedad_paciente
+        enfermedades = []
+        if enfermedades_paciente:
+            for enfermedad in enfermedades_paciente:
+                enfermedades.append(EnfermedadService(self.db).create(enfermedad))
+            for enfermedad in enfermedades:
+                EnfermedadPacienteService(self.db).create(expediente.paciente_id, enfermedad.id)
+        
+        # Update the alergias_medicamento
+        alergias = []
+        if alergias_medicamento:
+            AlergiaMedicamentoService(self.db).delete_by_paciente_id(expediente.paciente_id)
+            for alergia in alergias_medicamento:
+                alergias.append(MedicamentoService(self.db).create(alergia))
+            for alergia in alergias:
+                AlergiaMedicamentoService(self.db).create(expediente.paciente_id, alergia.id)
+
+        # Refresh the expediente
+        expediente = self.repo.get_by_id(id)
+
+        return expediente
     
     def delete(self, id):
         expediente = self.repo.get_by_id(id)

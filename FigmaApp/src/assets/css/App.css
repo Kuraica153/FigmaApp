@@ -2,14 +2,16 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 5vh;
+  min-height: 5vh;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   z-index: 1;
 }
 
 .sidebar {
   width: 15vw;
-  height: 95vh;
+  min-width: 105px;
+  min-height: 95vh;
+  padding-top: 0%;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
@@ -22,11 +24,12 @@
   list-style: none;
   padding: 0;
   margin: 0;
+  height: 100%;
 }
 
 .sidebar ul li {
   padding: 10px;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #dfdede;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -46,4 +49,36 @@
   font-weight: 900;
   font-size: 1.3rem;
   cursor: pointer;
+}
+
+.sign-up-container{
+  height: 100vh;
+  width: 100vw;
+}
+
+.bg-image{
+  background-image: url("../img/bg-image.png");
+  background-position: center;
+  background-repeat:no-repeat;
+  background-size: cover;
+}
+
+.color-secundario{
+  color: rgb(111 183 70);
+}
+
+.color-primario{
+  color: rgb(36 59 137);
+}
+
+.bg-color-secundario{
+  background-color: rgb(111 183 70)!important;
+}
+
+.bg-color-primario{
+  background-color: rgb(36 59 137)!important;
+}
+
+.logo{
+  width: 25%;
 }

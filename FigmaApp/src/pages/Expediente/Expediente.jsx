@@ -48,7 +48,6 @@ export const Expediente = () => {
                 });
             }
         })
-        console.log(id);
     }
 
     const handleUpdate = (id) => {
@@ -64,7 +63,7 @@ export const Expediente = () => {
             <div className="container mt-3">
                 <div className="d-flex justify-content-between align-items-center">
                     <h1>Expedientes</h1>
-                    <button className="btn btn-primary h-50" onClick={ () => navigate('/files/create')}>Nuevo</button>
+                    <button className="btn btn-success bg-color-secundario h-50" onClick={ () => navigate('/files/create')}>Nuevo</button>
                 </div>
                 <hr />
                 <StickyHeadTable 

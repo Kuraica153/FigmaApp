@@ -31,7 +31,7 @@ async def create(obj_in: PacienteCreate, db=Depends(get_db)):
     return ExpedienteService(db).create(obj_in)
 
 @router.put("/{id}", response_model=Expediente, summary="Update a expediente")
-async def update(id: int, obj_in: ExpedienteCreate, db=Depends(get_db)):
+async def update(id: int, obj_in: PacienteCreate, db=Depends(get_db)):
     return ExpedienteService(db).update(id, obj_in)
 
 @router.delete("/{id}", response_model=bool, summary="Delete a expediente")

@@ -8,7 +8,7 @@ export const Sidebar = () => {
 
     return (
         <div className="sidebar">
-            <ul>
+            <ul className='d-flex flex-column align-content-lg-between'>
                 <li onClick={ () => navigate('/consultations') }>Consultas</li>
                 <li onClick={ () => navigate('/files') }>Expedientes</li>
                 <li onClick={ () => navigate('/users') }>Usuarios</li>

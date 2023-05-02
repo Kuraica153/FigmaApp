@@ -240,7 +240,6 @@ export const ViewConsulta = () => {
                             <div className="mt-3">
                                 {
                                     procedimientos.map((procedimiento, index) => (
-                                        console.log(procedimiento),
                                         <div key={index} className="d-flex justify-content-between align-items-center">
                                             <h6>{ procedimiento.procedimiento }</h6>
                                         </div>
@@ -253,7 +252,7 @@ export const ViewConsulta = () => {
 
                 </div>
                 <div className="d-flex justify-content-center mt-3 mb-3">
-                    <button className="btn btn-danger ms-2" onClick={() => navigate("/consultations")}>Volver</button>
+                    <button className="btn btn-primary bg-color-primario ms-2" onClick={() => navigate("/consultations")}>Volver</button>
                 </div>
             </div>
         </div>
